@@ -50,7 +50,7 @@ class Rectangles(pygame.Surface):
 
 # create a list with instances of Rectangles that have random attributes
 list_rect = []
-for i in range(400):
+for i in range(20):
     list_rect.append(Rectangles(X=randint(0, displayX), Y=randint(0, displayY), dimX=randint(20, 100), dimY=randint(20, 100), VelX=randint(1, 4), VelY=randint(1, 4), color=(randint(0, 255), randint(0, 255), randint(0, 255))))
 
 while True:
@@ -59,15 +59,27 @@ while True:
             pygame.quit()
             exit()
         elif event.type == timer_event:
-            time_counter +=1
+            time_counter += 1
 
-    # screen.fill((0, 0, 0))
     if time_counter < 5:
+        screen.fill((0, 0, 0))
         for element in list_rect:
             element.draw()
             element.move()
             for other_element in list_rect:
-                if
+                if other_element != element and element.check_collision(other_element):
+                    if element.X > other_element.X:
+                        element.VelX = 1
+                        other_element.VelX = -1
+                    elif element.X < other_element.X:
+                        element.VelX = -1
+                        other_element.VelX = 1
+                    elif element.Y > other_element.Y:
+                        element.VelY = 1
+                        other_element.VelY = -1
+                    elif element.Y < other_element.Y:
+                        element.VelY = -1
+                        other_element.VelY = 1
 
     pygame.display.update()
     clock.tick(60)
