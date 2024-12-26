@@ -13,7 +13,7 @@ pygame.time.set_timer(timer_event, 1000)
 
 # initialize display
 displayX = 1440
-displayY = 810
+displayY = 800
 screen = pygame.display.set_mode((displayX, displayY))
 pygame.display.set_caption("Rectangle game")
 
